@@ -4,6 +4,7 @@
 	require('security.php');
 
 if (isset($_POST['submit'])) {
+
 	if (isset($_POST['first_name'],$_POST['last_name'],$_POST['bio'])) {
 
 		$first_name = escape($_POST['first_name']);
@@ -13,7 +14,7 @@ if (isset($_POST['submit'])) {
 		if (!empty($first_name) && !empty($last_name) && !empty($bio)) {
 			
 			if ($insert = $conn->query("INSERT INTO people (firsrt_name,last_name,bio,created) VALUES ('{$first_name}','{$last_name}','{$bio}',NOW())")) {
-				echo $conn->affected_rows;
+				echo "<script>alert('sucessful inserted');</script>";
 			}else{
 				echo "not inserted";
 			}
@@ -102,16 +103,16 @@ $records = array();
 	<form action="index.php" method="post">
 		<div>
 			<label>First Name: </label>
-			<input type="text" name="first_name" >
+			<input type="text" name="first_name" value="">
 		</div>
 
 		<div>
 			<label>Last Name: </label>
-			<input type="text" name="last_name" >
+			<input type="text" name="last_name" value="">
 		</div>
 		<div>
 			<label>Bio: </label>
-			<textarea name="bio"></textarea>
+			<textarea name="bio" value=""></textarea>
 		</div>
 		<div id="submit">
 			<input type="submit" name="submit" value="submit">
